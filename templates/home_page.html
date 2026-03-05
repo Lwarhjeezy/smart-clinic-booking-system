@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unizulu Clinic - Student Healthcare Made Simple</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --accent-color: #2563eb;
+        }
+        
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #f9fafb;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+        
+        .sign-out {
+            color: #ef4444 !important;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--dark);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 3rem;
+        }
+        
+        .trusted-by {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 2rem;
+        }
+        
+        /* About Us Section */
+        .about {
+            background-color: white;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: 400px;
+            background-color: #f1f5f9;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block; /* Fixed: Changed from display: none */
+        }
+        
+        .about-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .mission, .vision {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .mission h3, .vision h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .mission h3 i, .vision h3 i {
+            margin-right: 10px;
+        }
+        
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .feature-desc {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        /* Stats Section - REMOVED WHITE CONTAINERS */
+        .stats {
+            text-align: center;
+            background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .stat-item {
+            padding: 30px;
+            /* Removed white background and box shadow */
+            border-radius: 12px;
+            color: var(--dark); /* Added text color */
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--dark); /* Changed from gray to dark for better visibility */
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Mobile Navigation */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 968px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                z-index: 101;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                flex-direction: column;
+                background-color: white;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                padding: 80px 20px 20px;
+                transition: right 0.3s ease;
+                z-index: 100;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-menu li {
+                margin: 0;
+                width: 100%;
+                border-bottom: 1px solid #f1f5f9;
+            }
+            
+            .nav-menu a {
+                padding: 15px 0;
+                display: block;
+                width: 100%;
+            }
+            
+            .overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        /* AI Floating Icon */
+        #ai-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6ec4, #7873f5, #1fd1f9, #ffdd00);
+            background-size: 300% 300%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            animation: gradientAnim 4s ease infinite, floatIcon 3s ease-in-out infinite;
+            z-index: 1000;
+        }
+        
+        #ai-icon i {
+            font-size: 1.8rem;
+            color: #fff;
+        }
+        
+        #ai-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: red;
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 5px;
+            border-radius: 50%;
+            border: 1px solid #fff;
+            z-index: 2;
+        }
+        
+        @keyframes gradientAnim {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* AI Sidebar */
+        #ai-sidebar {
+            position: fixed;
+            top: 0;
+            right: -350px;
+            width: 350px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 1.5rem;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+            border-left: 2px solid var(--accent-color);
+            display: flex;
+            flex-direction: column;
+            transition: right 0.4s ease;
+            z-index: 999;
+        }
+        
+        #ai-sidebar h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* New styles for the input and symptom list */
+        #symptom-input-container {
+            position: relative;
+            margin-bottom: 0.8rem;
+        }
+
+        #symptom-input {
+            width: 100%;
+            padding: 0.7rem;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        #symptom-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none; /* Hidden by default */
+        }
+        
+        #symptom-list .symptom-item {
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            font-size: 0.9rem;
+        }
+        
+        #symptom-list .symptom-item:hover {
+            background-color: #f1f5f9;
+        }
+        
+        #selected-symptoms-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 8px;
+            background: #f1f5f9;
+            border-radius: 12px;
+            min-height: 40px;
+        }
+        
+        .selected-symptom-chip {
+            display: flex;
+            align-items: center;
+            background: var(--primary);
+            color: white;
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 0.9rem;
+        }
+        
+        .remove-symptom {
+            margin-left: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #fff;
+            background: none;
+            border: none;
+            font-size: 1rem;
+        }
+
+        #ai-sidebar button {
+            width: 100%;
+            margin-top: 0.8rem;
+            padding: 0.7rem;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            outline: none;
+            font-size: 1rem;
+            background: var(--accent-color);
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+        }
+        
+        #ai-sidebar button:hover {
+            background: var(--primary-dark);
+        }
+        
+        #ai-chat {
+            flex: 1;
+            margin-top: 1rem;
+            overflow-y: auto;
+            font-size: 0.9rem;
+            color: #333;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            min-height: 200px;
+        }
+        
+        .chat-message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+        
+        .user-message {
+            background: #e3f2fd;
+            margin-left: auto;
+            text-align: right;
+        }
+        
+        .ai-message {
+            background: #f1f1f1;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-clinic-medical"></i>
+                Unizulu Clinic
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuButton">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="overlay" id="overlay"></div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="{{ url_for('student_services') }}">Services</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="{{ url_for('notification_page') }}">Notifications</a></li>
+                <li><a href="{{ url_for('student_dashboard') }}" class="sign-out">Appointments</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1 class="hero-title">
+            {% if user and user.full_name %}
+                Welcome, {{ user.full_name }}!
+            {% else %}
+                Welcome to Unizulu Clinic Site, Guest!
+            {% endif %}
+            </h1>
+            <p class="hero-subtitle">Book appointments with experienced campus nurses and get instant AI-powered symptom analysis. Healthcare designed for students, by healthcare professionals.</p>
+            
+            <div class="hero-buttons">
+                <a href="/booking" class="btn btn-primary">
+                    <i class="fas fa-calendar-check"></i> Book Appointment
+                </a>
+            </div>
+            
+            <p class="trusted-by">Trusted by thousands of patients</p>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Unizulu Clinic</h2>
+            <p class="section-subtitle">Dedicated to providing comprehensive healthcare services to the University of Zululand community</p>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/static/generated image.jpg" alt="Unizulu Clinic">
+                </div>
+                
+                <div class="about-text">
+                    <h2>Your Health is Our Priority</h2>
+                    <p>Established in 1995, Unizulu Clinic has been serving the University of Zululand community for over 25 years. We are committed to providing high-quality, accessible healthcare services to students, faculty, and staff.</p>
+                    
+                    <p>Our team of experienced healthcare professionals includes registered nurses, nurse practitioners, and visiting physicians who specialize in campus health and student wellness.</p>
+                    
+                    <p>We understand the unique health challenges faced by students and are dedicated to providing compassionate, confidential care in a welcoming environment.</p>
+                    
+                    <div class="mission-vision">
+                        <div class="mission">
+                            <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                            <p>To enhance the academic experience by promoting health and wellness through accessible, high-quality healthcare services and education.</p>
+                        </div>
+                        
+                        <div class="vision">
+                            <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                            <p>To be the leading campus health service provider in South Africa, recognized for excellence in student healthcare and wellness innovation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Unizulu Clinic?</h2>
+            <p class="section-subtitle">Experience personalized healthcare designed for students, by healthcare professionals.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="feature-title">AI Symptom Checker</h3>
+                    <p class="feature-desc">Get instant analysis of your symptoms with our advanced AI system. Receive personalized recommendations and urgency assessments.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Easy Appointment Booking</h3>
+                    <p class="feature-desc">Schedule appointments with your preferred doctors at convenient times. View availability in real-time and get instant confirmations.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Secure & Private</h3>
+                    <p class="feature-desc">Your health data is protected with enterprise-grade security. HIPAA compliant with end-to-end encryption.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">24/7 Access</h3>
+                    <p class="feature-desc">Access your health records, book appointments, and check symptoms anytime, anywhere.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="feature-title">Student-Centered Care</h3>
+                    <p class="feature-desc">Our services are specifically designed to meet the unique healthcare needs of university students.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title">Trusted Health Care Provider</h2>
+            <p class="section-subtitle">Numbers that speak for our commitment to quality healthcare</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">5,000+</div>
+                    <div class="stat-label">Students Served</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Availability</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-number">4.9/5</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Unizulu Clinic</h3>
+                    <p>Comprehensive healthcare services designed specifically for students.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Book Appointment</a></li>
+                        <li><a href="#">Symptom Checker</a></li>
+                        <li><a href="#about">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-heartbeat"></i>STI Management</a></li>
+                        <li><a href="#"><i class="fas fa-virus"></i>HIV Testing Services (HTS)</a></li>
+                        <li><a href="#"><i class="fas fa-brain"></i>Mental Health & Substance Abuse</a></li>
+                        <li><a href="#"><i class="fas fa-cancer"></i>Cancer Screening</a></li>
+                        <li><a href="#"><i class="fas fa-female"></i>Gender-Based Violence Support</a></li>
+                        <li><a href="#"><i class="fas fa-medkit"></i>Minor Medical & Surgical Ailments</a></li>
+                        <li><a href="#"><i class="fas fa-user-md"></i>SRHR (Sexual & Reproductive Health)</a></li>
+                        <li><a href="#"><i class="fas fa-heartbeat"></i>Hypertension & Diabetes Screening</a></li>
+                        <li><a href="#"><i class="fas fa-lungs"></i>TB Screening</a></li>
+                        <li><a href="#"><i class="fas fa-user-md"></i>MMC Recruitment</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> +27 35 902 6000</li>
+                        <li><i class="fas fa-envelope"></i> info@unizulu.ac.za</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Mvuzeveze Road, Main Campus</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Unizulu Clinic. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="ai-icon" title="Chat with AI">
+        <i class="fas fa-robot"></i>
+        <span id="ai-badge">AI</span>
+    </div>
+
+    <div id="ai-sidebar">
+        <h3>AI Symptom Checker</h3>
+        <p style="font-size: 0.9em; color: var(--gray);">Enter more symptoms for more accurate results.</p>
+        
+        <div id="selected-symptoms-container"></div>
+        
+        <div id="symptom-input-container">
+            <input type="text" id="symptom-input" placeholder="Enter symptom...">
+            <div id="symptom-list"></div>
+        </div>
+
+        <button onclick="checkSymptoms()">Check Symptoms</button>
+        <div id="ai-chat"></div>
+
+        <p style="font-size: 0.9em; color: var(--gray);">This tool is for general information only and not medical advice. Always consult a healthcare professional for proper diagnosis and treatment. If it feels like an emergency, contact emergency medical services at 035 902 6599.</p>
+    </div>
+
+   <script>
+    // Mobile menu functionality
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const navMenu = document.getElementById('navMenu');
+    const overlay = document.getElementById('overlay');
+
+    function toggleMenu() {
+        navMenu.classList.toggle('active');
+        overlay.classList.toggle('active');
+        const icon = mobileMenuButton.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+    }
+
+    mobileMenuButton.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navMenu.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+            toggleMenu();
+        }
+    });
+
+    // AI Sidebar functionality
+    const aiIcon = document.getElementById('ai-icon');
+    const aiSidebar = document.getElementById('ai-sidebar');
+    let sidebarOpen = false;
+
+    aiIcon.addEventListener('click', () => {
+        sidebarOpen = !sidebarOpen;
+        aiSidebar.style.right = sidebarOpen ? '0' : '-350px';
+    });
+
+    // New Symptom Checker Logic
+    const symptomInput = document.getElementById('symptom-input');
+    const symptomList = document.getElementById('symptom-list');
+    const selectedSymptomsContainer = document.getElementById('selected-symptoms-container');
+    let officialSymptoms = [];
+    let selectedSymptoms = [];
+
+    // Fetch symptoms from backend on page load
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            const response = await fetch('http://localhost:8000/symptoms');
+            if (!response.ok) throw new Error('Failed to fetch symptoms');
+            const data = await response.json();
+            officialSymptoms = data.symptoms.map(symptom => ({
+                id: symptom,
+                label: symptom.replace(/_/g, ' ')
+            }));
+        } catch (error) {
+            console.error('Error fetching symptoms:', error);
+            addMessage('Unable to load symptoms. Please try again later.', 'ai');
+        }
+    });
+
+    // Handle symptom input
+    symptomInput.addEventListener('input', () => {
+        const query = symptomInput.value.toLowerCase();
+        symptomList.innerHTML = '';
+        if (query.length < 2) {
+            symptomList.style.display = 'none';
+            return;
+        }
+
+        const filteredSymptoms = officialSymptoms.filter(symptom => 
+            symptom.label.toLowerCase().includes(query)
+        );
+
+        if (filteredSymptoms.length > 0) {
+            symptomList.style.display = 'block';
+            filteredSymptoms.forEach(symptom => {
+                const symptomItem = document.createElement('div');
+                symptomItem.classList.add('symptom-item');
+                symptomItem.textContent = symptom.label;
+                symptomItem.dataset.id = symptom.id;
+                symptomItem.addEventListener('click', () => {
+                    addSymptom(symptom.id, symptom.label);
+                    symptomInput.value = '';
+                    symptomList.style.display = 'none';
+                });
+                symptomList.appendChild(symptomItem);
+            });
+        } else {
+            symptomList.style.display = 'none';
+        }
+    });
+
+    // Hide symptom list when clicking outside
+    document.addEventListener('click', (event) => {
+        if (!event.target.closest('#symptom-input-container')) {
+            symptomList.style.display = 'none';
+        }
+    });
+    
+    // Function to add a selected symptom to the UI
+    function addSymptom(id, label) {
+        if (selectedSymptoms.includes(id)) {
+            return; // Don't add duplicates
+        }
+        selectedSymptoms.push(id);
+        const symptomChip = document.createElement('div');
+        symptomChip.classList.add('selected-symptom-chip');
+        symptomChip.textContent = label;
+        symptomChip.dataset.id = id;
+
+        const removeButton = document.createElement('button');
+        removeButton.classList.add('remove-symptom');
+        removeButton.innerHTML = '&times;';
+        removeButton.addEventListener('click', () => {
+            removeSymptom(id);
+        });
+
+        symptomChip.appendChild(removeButton);
+        selectedSymptomsContainer.appendChild(symptomChip);
+    }
+    
+    // Function to remove a selected symptom from the UI and array
+    function removeSymptom(id) {
+        selectedSymptoms = selectedSymptoms.filter(symptom => symptom !== id);
+        const symptomChip = selectedSymptomsContainer.querySelector(`.selected-symptom-chip[data-id="${id}"]`);
+        if (symptomChip) {
+            symptomChip.remove();
+        }
+    }
+    
+    // Check Symptoms button click handler
+    async function checkSymptoms() {
+        const chat = document.getElementById('ai-chat');
+
+        if (selectedSymptoms.length === 0) {
+            addMessage('Please enter at least one symptom.', 'ai');
+            return;
+        }
+
+        // Add user message to chat
+        const userMessageText = selectedSymptoms.map(symptom => {
+            const officialSymptom = officialSymptoms.find(s => s.id === symptom);
+            return officialSymptom ? officialSymptom.label : symptom;
+        }).join(', ');
+        addMessage(`Symptoms: ${userMessageText}`, 'user');
+
+        try {
+            // Send selected symptoms to backend /predict endpoint
+            const response = await fetch('http://localhost:8000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ user_symptoms: selectedSymptoms }),
+            });
+
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+            const data = await response.json();
+            const message = `Predicted Disease: ${data.predicted_disease}<br>
+                            Confidence: ${data.confidence}<br>
+                            Triage Level: ${data.triage_level}<br>`;
+
+            addMessage(message, 'ai');
+        } catch (error) {
+            console.error('Error predicting disease:', error);
+            addMessage('Error processing your request. Please try again.', 'ai');
+        }
+
+        // Clear selected symptoms after prediction
+        selectedSymptoms = [];
+        selectedSymptomsContainer.innerHTML = '';
+    }
+
+    // Function to add chat messages
+    function addMessage(text, sender) {
+        const chat = document.getElementById('ai-chat');
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('chat-message', sender === 'user' ? 'user-message' : 'ai-message');
+        messageDiv.innerHTML = text;
+        chat.appendChild(messageDiv);
+        chat.scrollTop = chat.scrollHeight;
+    }
+</script>
+</body>
+</html>

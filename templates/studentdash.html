@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard - Unizulu Clinic</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="/static/studentdash.css">
+<style>
+       
+        .notification-bell {
+    position: relative;
+    display: inline-block;
+    font-size: 24px;
+    color: #007bff;
+}
+.notification-count {s
+    background: #dc3545;
+    color: #fff;
+    border-radius: 50%;
+    padding: 2px 7px;
+    font-size: 12px;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+<!-- Sidebar -->
+<aside class="sidebar">
+<div class="logo">
+<h1><i class="fas fa-clinic-medical"></i> <span>Unizulu Clinic</span></h1>
+</div>
+
+    <ul class="nav-menu">
+         <li><a href="{{ url_for('student_home') }}"><i class="fas fa-home"></i> <span>Home</span></a></li>
+        <li><a href="#"><i class="fas fa-calendar-check"></i> <span>Appointments</span></a></li>
+        <li><a href="{{ url_for('notification_page') }}">
+            <span class="notification-bell">
+            <i class="fa fa-bell">
+                {% if notification_count and notification_count > 0 %}
+                    <span class="notification-count">{{ notification_count }}</span>
+                {% endif %}
+           </i><span>Notifications</span></a>
+            </span></li>
+        <li><a href="{{ url_for('student_services') }}"><i class="fas fa-concierge-bell"></i> <span>Services</span></a></li>
+        <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+    </ul>
+    
+    <div class="user-profile">
+        <div class="user-avatar">
+            {% if user and user.full_name %}
+                {{ user.full_name[:1] | upper }}
+            {% else %}
+                U
+            {% endif %}
+        </div>
+        <div class="user-info">
+            <div class="user-name">
+                {{ user.full_name if user else 'User' }}
+            </div>
+            <div class="user-role">Student</div>
+        </div>
+    </div>
+</aside>
+<div class="overlay">
+<!-- Main Content -->
+<main class="dashboard-content">
+    <div class="dashboard-header">
+        <h2>Welcome, {{ user.full_name if user else 'Student' }}</h2>
+        <p>Here is an overview of your health information and upcoming appointments.</p>
+    </div>
+    
+    <div class="dashboard-grid">
+        <!-- Upcoming Appointments Card -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Upcoming Appointments</h3>
+                <a href="/booking" class="card-action">+ Book New</a>
+            </div>
+            
+            <div class="appointment-list">
+                {% if upcoming_appointments %}
+                    {% for appointment in upcoming_appointments %}
+                        <div class="appointment-item">
+                            <div class="appointment-info">
+                                <h4>{{ appointment.service_type }}</h4>
+                                <p>Date: {{ appointment.formatted_date }}</p>
+                                <p>Time: {{ appointment.formatted_time }}</p>
+                                <p>Status: <span class="status-{{ appointment.status | lower }}">{{ appointment.status | capitalize }}</span></p>
+                                  {% if appointment.status != "cancelled" and appointment.status != "rejected" %}
+                                <button onclick="cancelAppointment({{ appointment.appointment_id }})" class="btn">Cancel</button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-calendar-times"></i>
+                        <p>No upcoming appointments</p>
+                        <a href="/booking" class="btn">Book Your First Appointment</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    </div>
+    <style>
+    </style>
+</main>
+<script>
+function cancelAppointment(appointmentId) {
+    if (!confirm("Are you sure you want to cancel this appointment?")) return;
+    fetch(`/cancel_appointment/${appointmentId}`, {
+        method: "POST",
+        headers: {
+            "X-Requested-With": "XMLHttpRequest"
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            location.reload();
+        } else {
+            alert("Failed to cancel appointment.");
+        }
+    })
+    .catch(() => alert("Failed to cancel appointment."));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Clinic Service</title>
+   <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif; /* Assuming Roboto or similar; import if needed */
+}
+
+body {
+    background-color: #ffffff; /* White background */
+    color: #333333; /* Dark text for contrast */
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Overlay/Header Styles */
+.overlay {
+    width: 100%;
+    background-color: #f0f8ff; /* Light blue tint for header area */
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: #007bff; /* Blue accent for title */
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+header a {
+    color: #007bff; /* Blue link */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+header a:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
+
+/* Add Service Card Styles */
+.add-service-card {
+    background-color: #ffffff; /* White card */
+    border: 1px solid #e0e0e0; /* Light gray border */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+main h2 {
+    color: #007bff; /* Blue for section title */
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #333333;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    background-color: #007bff; /* Blue button */
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+button#cancel_button {
+    color: #007bff; /* Blue text for cancel */
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button#cancel_button:hover {
+    text-decoration: underline;
+}
+
+/* Existing Services List */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    background-color: #f8f9fa; /* Very light gray/blue tint */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    color: #333333;
+}
+
+/* Footer Styles */
+.footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: #f0f8ff; /* Light blue tint */
+    color: #666666;
+    font-size: 14px;
+    margin-top: auto;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .add-service-card {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+}
+
+   </style>
+</head>
+<body><div class="overlay">
+    <header>
+        <h1>Add New Clinic Service</h1>
+        <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+    </header>
+</div>
+<div class="add-service-card">
+    <main>
+        <form action="/add-service" method="post">
+            <label for="service_name">Service Name:</label>
+            <input type="text" id="service_name" name="service_name" required>
+            <button type="submit">Add Service</button>
+            <br>
+            <button type="button" id="cancel_button" name="cancel_button" style="border:none; background:none; color:var(--accent-color);">Cancel</button>
+        </form>
+        
+        <h2>Existing Services</h2>
+        {% if services %}
+            <ul>
+                {% for service in services %}
+                    <li>{{ service.service_name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No services available.</p>
+        {% endif %}
+    </main>
+</div>
+<div class="footer">
+    <footer>
+        Need help? Call 035 9026599 | © 2025 UNIZULU HealthTech
+    </footer>
+</div>
+</body>
+</html>

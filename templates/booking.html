@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Book Appointment - UNIZULU Clinic</title>
+<link rel="stylesheet" href="/static/booking.css"/>
+</head>
+<body>
+<div class="booking-card">
+  <div class="logo"><img src="/static/UNIZULU.png" alt="UNIZULU Logo"></div>
+  {% if error %}
+  <div class="error-message" style="color: red; margin-bottom: 20px;">
+    {{ error }}
+  </div>
+{% endif %}
+  <h2>Book an Appointment</h2>
+
+  <form id="bookingForm" action="/book_appointment" method="post">
+   <select id="service" name="service_type" required>
+  <option value="">-- Choose a Service --</option>
+  {% for service in services %}
+  <option value="{{ service.service_name }}">{{ service.service_name }}</option>
+  {% endfor %}
+</select>
+
+    <label for="date">Select Date</label>
+    <input type="date" id="date" required name="appointment_date"/>
+
+   <label for="time">Available Time Slots</label>
+<select type="time" id="time" required name="appointment_time">
+  <option value="">-- Select a Time Slot --</option>
+  {% set times = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"] %}
+  {% for t in times %}
+    {% if booked_slots and t in booked_slots %}
+      <option value="{{ t }}" disabled>{{ t }} - Booked</option>
+    {% else %}
+      <option value="{{ t }}">{{ t }} {% if t in ["12:00", "13:00", "14:00", "15:00"] %}PM{% else %}AM{% endif %}</option>
+    {% endif %}
+  {% endfor %}
+</select>
+
+    <button type="submit">Book Appointment</button>
+  </form>
+</div>
+
+<footer>
+  Need help? Call 035 9026599 | © 2025 UNIZULU HealthTech
+</footer>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.getElementById('date');
+    const timeSelect = document.getElementById('time');
+    const today = new Date();
+    const minDate = today.toISOString().split('T')[0];
+    const maxDateObj = new Date();
+    maxDateObj.setDate(today.getDate() + 14);
+    const maxDate = maxDateObj.toISOString().split('T')[0];
+    dateInput.setAttribute('min', minDate);
+    dateInput.setAttribute('max', maxDate);
+
+    const allTimes = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"];
+
+    function updateTimeSlots(bookedSlots = [], allowedTimes = allTimes) {
+      if (!Array.isArray(bookedSlots)) bookedSlots = [];
+      timeSelect.innerHTML = '<option value="">-- Select a Time Slot --</option>';
+      allowedTimes.forEach(function(t) {
+        const hour = parseInt(t.split(':')[0], 10);
+        const suffix = (hour >= 12) ? 'PM' : 'AM';
+        if (bookedSlots.includes(t)) {
+          timeSelect.innerHTML += `<option value="${t}" disabled>${t} - Booked</option>`;
+        } else {
+          timeSelect.innerHTML += `<option value="${t}">${t} ${suffix}</option>`;
+        }
+      });
+    }
+
+    function fetchAndUpdate(dateStr, allowedTimes = allTimes) {
+      fetch(`/get_booked_slots?date=${dateStr}`)
+        .then(res => res.json())
+        .then(data => {
+          updateTimeSlots(data.booked_slots || [], allowedTimes);
+        })
+        .catch(() => {
+          updateTimeSlots([], allowedTimes);
+        });
+    }
+    if (dateInput.value) {
+      fetchAndUpdate(dateInput.value);
+    } else {
+      // optional: preload with min date
+      // updateTimeSlots([], allTimes);
+    }
+
+    dateInput.addEventListener('change', function() {
+      const selectedDate = this.value;
+      if (!selectedDate) {
+        timeSelect.innerHTML = '<option value="">-- Select a Time Slot --</option>';
+        return;
+      }
+
+      const day = new Date(selectedDate).getDay();
+      if (day === 0 || day === 6) {
+        alert("Appointments cannot be booked on weekends. Please select a weekday.");
+        this.value = "";
+        timeSelect.innerHTML = '<option value="">-- Select a Time Slot --</option>';
+        return;
+      }
+
+      if (day === 5) {
+        const fridayTimes = ["08:00", "09:00", "10:00", "11:00", "12:00"];
+        fetchAndUpdate(selectedDate, fridayTimes);
+        return;
+      }
+      fetchAndUpdate(selectedDate, allTimes);
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UNIZULU Clinic Login</title>
+  <link rel="stylesheet" href="/static/login.css">
+</head>
+<body>
+
+  <div class="login-card">
+    <div class="logo">
+      <img src="/static/UNIZULU.png" alt="UNIZULU Logo">
+    </div>
+    <h2>Clinic Portal Login</h2>
+
+    <form method="post" action="/login">
+      <label for="Username">Username</label>
+      <input type="text" id="Username" name="username" placeholder="Enter username" required>
+
+      <label for="Password">Password</label>
+      <input type="password" id="Password" name="password" placeholder="Enter password" required>
+
+      <div class="checkbox-container">
+        <input type="checkbox" id="remember-me">
+        <label for="remember-me">Remember me</label>
+      </div>
+
+      <button type="submit">Login</button>
+
+      <div class="links">
+        <a href="#">Forgot Password?</a>
+      </div>
+    </form>
+  </div>
+
+  <footer>
+    Need help? Call 035 9026599 | © 2025 UNIZULU HealthTech
+  </footer>
+</body>
+</html>

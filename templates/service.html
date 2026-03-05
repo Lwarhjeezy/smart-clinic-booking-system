@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Unizulu Clinic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+        }
+        
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #f9fafb;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Services Section Styles */
+        .services-section {
+            padding: 60px 0;
+        }
+        
+        .services-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .services-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .services-subtitle {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #dbeafe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .service-name {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .service-desc {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .service-features {
+            margin-top: 20px;
+        }
+        
+        .service-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .service-feature i {
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .services-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-title {
+                font-size: 2rem;
+            }
+            
+            .services-actions {
+                flex-direction: column;
+            }
+            
+            .service-card {
+                padding: 20px;
+            }
+        }
+               header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            color: #2563eb;
+            font-weight: bold;
+            text-decoration: none;
+            gap: 10px;
+        }
+        .logo i {
+            color: #2563eb;
+            margin-right: 8px;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-menu li a {
+            color: #1e293b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 8px 18px;
+            border-radius: 22px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            background: #2563eb;
+            color: #fff;
+        }
+        .sign-out {
+            background: #10b981;
+            color: #fff !important;
+            border-radius: 22px;
+            padding: 8px 18px;
+            margin-left: 10px;
+            transition: background 0.2s;
+        }
+        .sign-out:hover {
+            background: #059669;
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #2563eb;
+            cursor: pointer;
+        }
+        @media (max-width: 900px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 12px 0;
+            }
+            .nav-menu {
+                gap: 18px;
+            }
+        }
+        @media (max-width: 700px) {
+            .header-container {
+                padding: 10px 0;
+            }
+            .nav-menu {
+                flex-direction: column;
+                gap: 0;
+                background: #fff;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                display: none;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            }
+            .nav-menu.open {
+                display: flex;
+            }
+            .nav-menu li {
+                width: 100%;
+            }
+            .nav-menu li a {
+                display: block;
+                width: 100%;
+                padding: 14px 20px;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        
+    </style>
+</head>
+<body>
+        <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-clinic-medical"></i>
+                Unizulu Clinic
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuButton">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="overlay" id="overlay"></div>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#">Services</a></li>
+                <li><a href="{{ url_for('student_home') }}">Home</a></li>
+                <li><a href="{{ url_for('student_dashboard') }}" class="sign-out">Appointments</a></li>
+                <li><a href="/logout" class="sign-out">Sign Out</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        <!-- Services Section -->
+        <section class="services-section">
+            <div class="services-header">
+                <h2 class="services-title">Our Healthcare Services</h2>
+                <h3 class="services-subtitle">Comprehensive medical care for the University of Zululand community</h3>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-syringe"></i>
+                    </div>
+                    <h3 class="service-name">STI Management</h3>
+                    <p class="service-desc">Confidential testing, treatment, and counseling for sexually transmitted infections.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Comprehensive testing
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Treatment plans
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Prevention education
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3 class="service-name">HIV Testing Services (HTS)</h3>
+                    <p class="service-desc">Confidential HIV testing with pre- and post-test counseling.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Rapid testing
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Counseling services
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Referral to care
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="service-name">Mental Health & Substance Abuse</h3>
+                    <p class="service-desc">Support for mental health challenges and substance use issues.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Individual counseling
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Group therapy
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Crisis intervention
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3 class="service-name">Cancer Screening</h3>
+                    <p class="service-desc">Early detection services for various types of cancer.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Cervical cancer screening
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Breast exams
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Testicular exams
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="service-name">Gender-Based Violence Support</h3>
+                    <p class="service-desc">Comprehensive support for survivors of gender-based violence.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Trauma care
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Forensic documentation
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Support referrals
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-band-aid"></i>
+                    </div>
+                    <h3 class="service-name">Minor Medical & Surgical Ailments</h3>
+                    <p class="service-desc">Treatment for common illnesses and minor surgical procedures.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Wound care
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Infection treatment
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Minor procedures
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-venus-mars"></i>
+                    </div>
+                    <h3 class="service-name">SRHR (Sexual & Reproductive Health)</h3>
+                    <p class="service-desc">Comprehensive sexual and reproductive health services.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Contraception counseling
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Pregnancy testing
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Education resources
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="service-name">Hypertension & Diabetes Screening</h3>
+                    <p class="service-desc">Screening and monitoring for chronic conditions.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Blood pressure checks
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Blood glucose testing
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Lifestyle counseling
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-lungs"></i>
+                    </div>
+                    <h3 class="service-name">TB Screening</h3>
+                    <p class="service-desc">Tuberculosis screening and referral services.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Symptom screening
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Testing services
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Treatment referral
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hand-holding-medical"></i>
+                    </div>
+                    <h3 class="service-name">MMC Recruitment</h3>
+                    <p class="service-desc">Information and recruitment for medical male circumcision.</p>
+                    <div class="service-features">
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Education sessions
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Procedure information
+                        </div>
+                        <div class="service-feature">
+                            <i class="fas fa-check-circle"></i> Referral services
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </div>
+</body>
+</html>

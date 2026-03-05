@@ -1,0 +1,103 @@
+:root {
+  --primary-color: #004d99;
+  --accent-color: #007acc;
+  --bg-overlay: rgba(0,0,0,0.6);
+  --text-light: #fff;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; font-family:"Segoe UI", sans-serif; }
+
+body {
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:url("Resized-for-web-3.jpg") no-repeat center center/cover;
+  position:relative;
+  overflow:hidden;
+}
+
+body::before {
+  content:"";
+  position:absolute; top:0; left:0; right:0; bottom:0;
+  background:var(--bg-overlay);
+  z-index:0;
+}
+
+.booking-card {
+  position:relative;
+  z-index:1;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  border-radius:20px;
+  padding:3rem 2.5rem;
+  width:100%;
+  max-width:450px;
+  text-align:center;
+  color:var(--text-light);
+  box-shadow:0 8px 30px rgba(0,0,0,0.4);
+  animation: fadeUp 1s ease-in-out;
+}
+
+.booking-card .logo {
+  margin-bottom:1.5rem;
+}
+.booking-card .logo img { width:100px; }
+
+.booking-card h2 {
+  margin-bottom:1.5rem;
+  font-size:1.8rem;
+  color:#fff;
+}
+
+label {
+  display:block;
+  text-align:left;
+  margin:0.5rem 0 0.3rem;
+  font-weight:600;
+  font-size:0.9rem;
+}
+
+select, input[type="date"] {
+  width:100%;
+  padding:0.9rem;
+  margin-bottom:1rem;
+  border:none;
+  border-radius:10px;
+  outline:none;
+  font-size:1rem;
+}
+
+select:focus, input:focus { border:2px solid var(--accent-color); }
+
+button {
+  width:100%;
+  padding:1rem;
+  background:var(--accent-color);
+  color:white;
+  font-weight:bold;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-size:1rem;
+  transition: background 0.3s, transform 0.2s;
+}
+
+button:hover { background:#005f99; transform:translateY(-2px); }
+
+footer {
+  position:absolute;
+  bottom:15px;
+  width:100%;
+  text-align:center;
+  color:#fff;
+  font-size:0.85rem;
+  z-index:1;
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(30px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+@media(max-width:600px) { .booking-card { padding:2rem; } }
