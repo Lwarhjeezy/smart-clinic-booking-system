@@ -60,11 +60,12 @@ Prerequisites
 bash
 git clone https://github.com/Lwarhjeezy/smart-clinic-booking-system.git
 cd smart-clinic-booking-system
-2. Install Dependencies
+
+3. Install Dependencies
 bash
 Copy
 pip install -r requirements.txt
-3. Set Up Environment Variables
+4. Set Up Environment Variables
 Create a .env file in the root directory:
 env
 Copy
@@ -73,7 +74,8 @@ SMTP_PORT=587
 SMTP_EMAIL=your-email@outlook.com
 SMTP_PASSWORD=your-app-password
 Note: Use an App Password if you have 2FA enabled.
-4. Set Up Database
+
+5. Set Up Database
 Create a MySQL database named clinic_booking_system2 and run the schema:
 sql
 Copy
@@ -154,6 +156,7 @@ Copy
   "triage_level": "Low. Your symptoms appear mild...",
   "unrecognized_symptoms": []
 }
+
 🎓 Academic Context
 This project was developed as a Final Year Project for:
 Course:     Final year Project
@@ -167,6 +170,7 @@ Focus Areas: Full-Stack Development, AI Integration, Database Design, Project Ma
 [ ] Electronic Health Records (EHR) integration
 📄 License
 This project is for academic purposes. Contact me for collaboration or usage rights.
+
 Authors :
 Lwandile Ngidi
 Neliswa Maphumulo
